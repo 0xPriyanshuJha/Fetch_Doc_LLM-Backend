@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+aiomysql
+mysql-connector-python
+redis
+sqlalchemy
+numpy
+scikit-learn
+sentence-transformers
+docker
+beautifulsoup4
+requests
