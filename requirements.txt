@@ -10,3 +10,4 @@ sentence-transformers
 docker
 beautifulsoup4
 requests
+faiss-cpu
