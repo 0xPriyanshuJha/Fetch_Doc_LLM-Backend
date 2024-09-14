@@ -1,7 +1,10 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from fastapi import FastAPI, HTTPException, Request, Depends
-from app.db import init_db, get_user, create_user, update_user_calls
-from app.services.document_retrieval import search_documents
-from app.redis_cache import redis_client
+from app.db import init_db, get_user, update_user_calls
+from app.services.retrieval import search_documents
+from app.rediscache import redis_client
 import time
 
 
@@ -15,7 +18,7 @@ async def startup_event():
 
 # Health check endpoint to ensure our API is up and running
 @app.get("/health")
-async def Health():
+async def health():
     return{"status": "API is up and running"}
 
 
