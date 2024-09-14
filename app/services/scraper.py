@@ -11,7 +11,7 @@ def scrap():
         # Extracting titles and links
         for title in soup.find_all(class_='title'):
             pass
-        #scrapping very hour
+        #scrapping every hour
         time.sleep(3600)
 
 def start_scrapper():
