@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 class User(Base):
-    _tablename_ = 'users'
+    __tablename__ = 'users'
 
     user_id = Column(String(255), primary_key=True, index=True)
     api_calls = Column(Integer, default=1)

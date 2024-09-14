@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import threading
+import time
 
 def scrap():
     while True:

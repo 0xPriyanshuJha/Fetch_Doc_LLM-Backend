@@ -11,3 +11,5 @@ docker
 beautifulsoup4
 requests
 faiss-cpu
+greenlet
+cryptography

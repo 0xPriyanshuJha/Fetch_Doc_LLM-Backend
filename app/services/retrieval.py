@@ -26,8 +26,16 @@ def search_documents(text: str, top_k: int, threshold: float):
     documents = fetch_documents(indices)
     return[
         doc for doc in documents
-        if cosine_similarity(doc['embedding'], query_embedding) >= threshold # filter based on the threshold
+        if cosine_similarity(doc['embedding'], query_embedding) >= threshold  # filter based on the threshold
     ]
-# dummy function to embed the text
+
+# function to calculate cosine similarity
+def cosine_similarity(vec1, vec2):
+    dot_product = np.dot(vec1, vec2)
+    norm_vec1 = np.linalg.norm(vec1)
+    norm_vec2 = np.linalg.norm(vec2)
+    return dot_product / (norm_vec1 * norm_vec2)
+
+# function to embed the text
 def embed_text(text):
     return np.random.random(512)

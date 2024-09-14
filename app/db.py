@@ -1,8 +1,9 @@
-from sqlalchemy import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import select
 from app.models.user import User, Base
-
+from app.models.document import Document
+from sqlalchemy.exc import IntegrityError
 
 # database URL
 DATABASE_URL = "mysql+aiomysql://root:12345678@localhost/Test"
@@ -17,12 +18,26 @@ async def init_db():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
+# function to create a new user
+async def create_user(user_id: str):
+    async with AsyncSessionLocal() as session:
+        try:
+            new_user = User(user_id="test", api_calls=1)
+            session.add(new_user)
+            await session.commit()
+        except IntegrityError:
+            await session.rollback()
+            raise
+
 # creating a new user
 async def get_user(user_id: str):
     async with AsyncSessionLocal() as session: # creating a new session
-        new_user = User(user_id=user_id, api_calls=1)
-        session.add(new_user)
-        await session.commit()
+        res = await session.execute(select(User).where(User.user_id == user_id))
+        user = res.scalars().first()
+        return user
+        # new_user = User(user_id=user_id, api_calls=1)
+        # session.add(new_user)
+        # await session.commit()
 
 # update the user api calls
 async def update_user_calls(user_id: str):
@@ -34,3 +49,9 @@ async def update_user_calls(user_id: str):
         if user:
             user.api_calls += 1
             await session.commit()
+
+async def fetch_documents(indices):
+    async with AsyncSessionLocal() as session:
+        res = await session.execute(select(Document).where(Document.id.in_(indices)))
+        documents = res.scalars().all()
+        return [{"id": doc.id, "content": doc.content, "embedding": doc.embedding} for doc in documents]
