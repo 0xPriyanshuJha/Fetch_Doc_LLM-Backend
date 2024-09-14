@@ -13,3 +13,4 @@ requests
 faiss-cpu
 greenlet
 cryptography
+python-dotenv
