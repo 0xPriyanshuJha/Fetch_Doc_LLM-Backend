@@ -4,9 +4,15 @@ from sqlalchemy import select
 from app.models.user import User, Base
 from app.models.document import Document
 from sqlalchemy.exc import IntegrityError
+import dotenv
+import os
+
+# load the environment variables
+dotenv.load_dotenv()
+
 
 # database URL
-DATABASE_URL = "mysql+aiomysql://root:12345678@localhost/Test"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 # creating the database engine
 engine = create_async_engine(DATABASE_URL, echo=True)
