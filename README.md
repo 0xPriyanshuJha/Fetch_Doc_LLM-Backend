@@ -1,4 +1,4 @@
-## 21BAI10239_ML
+## Fetch_Doc_LLM-Backend
 This project uses MySQL, Python (FastAPI), and many web technologies to build a web scraping and retrieval system. Hacker News is the source of the news data that is scraped, stored in a database, and made available for retrieval and manipulation. The application is containerized using Docker, which facilitates deployment.
 ### Table of Contents
 ## Table of Contents
@@ -31,8 +31,8 @@ This project uses MySQL, Python (FastAPI), and many web technologies to build a 
 Clone the Repository:
 
 ```bash
-git clone https://github.com/0xPriyanshuJha/21BAI10239_ML
-cd 21BAI10239_ML
+git clone https://github.com/0xPriyanshuJha/Fetch_Doc_LLM-Backend
+cd Fetch_Doc_LLM-Backend
 ```
 Set Up Virtual Environment:
 ``` bash
